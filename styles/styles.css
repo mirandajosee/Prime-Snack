@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    color: #222222;
+}
+
+header {
+    background-color: #24452f;
+    padding: 12px;
+}
+
+nav {
+    text-align: center;
+}
+
+nav img {
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+nav ul {
+    display: inline;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin: 0 8px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav button {
+    padding: 6px 10px;
+}
+
+main {
+    width: 80%;
+    margin: 25px auto;
+    padding: 20px;
+    background-color: rgb(241, 237, 245);
+    border: 1px solid #dddddd;
+}
+
+h1,
+h2 {
+    color: #2d5b3a;
+}
+
+.cuenta {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #dddddd;
+}
+
+form {
+    width: 320px;
+    margin: 20px auto;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    margin-top: 4px;
+}
+
+form button {
+    margin-top: 15px;
+    padding: 8px 12px;
+}
+
+table {
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #8400ff;
+    text-align: left;
+}
+
+.nota {
+    font-style: italic;
+}
