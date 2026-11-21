@@ -1,111 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PrimeSnacks</title>
-
+    <meta name="description" content="Prime Snacks, barritas y snacks de proteína vegetal hechos en Córdoba.">
+    <title>Prime Snacks | Snacks de proteína vegetal</title>
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
-
 <body>
-
-    <header>
-
-        <nav>
-
-            <a href="./index.html">
-                <img src="./img/logo.png"
-                     alt="Logo de PrimeSnacks"
-                     width="70">
+    <header class="encabezado">
+        <nav class="contenedor navbar" aria-label="Navegación principal">
+            <a class="marca" href="./index.html">
+                <img src="./img/marca.webp" alt="" width="38" height="38">
+                Prime Snacks
             </a>
-
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-
-                <li>
-                    <a href="./pages/barritas.html">Barritas</a>
-                </li>
-
-                <li>
-                    <a href="./pages/snacks.html">Otros Snacks</a>
-                </li>
-
-                <li>
-                    <a href="./pages/contacto.html">Contacto</a>
-                </li>
-
-                <li>
-                    <button type="button">Logout</button>
-                </li>
+            <ul class="nav-enlaces">
+                <li><a href="./index.html" aria-current="page">Inicio</a></li>
+                <li><a href="./pages/barritas.html">Barritas</a></li>
+                <li><a href="./pages/snacks.html">Otros snacks</a></li>
+                <li><a href="./pages/contacto.html">Contacto</a></li>
             </ul>
-
+            <a class="nav-cuenta" href="./pages/login.html">Iniciar sesión</a>
         </nav>
-
     </header>
 
-    <main>
-
-        <h1>PrimeSnacks</h1>
-
-        <p>
-            Snacks proteicos, veganos y saludables para acompañarte
-            en el gimnasio, el trabajo o el estudio.
-        </p>
-
-        <section>
-
-            <h2>Nuestras categorías</h2>
-
-            <article>
-                <h3>Barritas proteicas</h3>
-
-                <p>
-                    Distintas variedades de barritas elaboradas con
-                    ingredientes vegetales.
-                </p>
-
-                <a href="./pages/barritas.html">
-                    Ver barritas
-                </a>
-            </article>
-
-
-            <article>
-                <h3>Otros Snacks</h3>
-
-                <p>
-                    Galletitas, bites, snacks crocantes y otros
-                    productos PrimeSnacks.
-                </p>
-
-                <a href="./pages/snacks.html">
-                    Ver otros snacks
-                </a>
-            </article>
-
+    <main class="contenedor pagina">
+        <section class="portada">
+            <div class="portada-texto">
+                <p class="etiqueta">Snacks vegetales de Córdoba</p>
+                <h1>Proteína vegetal para tu ritmo.</h1>
+                <p>Barritas y snacks veganos para llevar al gimnasio, a la facu o al trabajo.</p>
+                <a class="boton boton-lima" href="./pages/barritas.html">Ver barritas <span aria-hidden="true">→</span></a>
+            </div>
+            <img src="./img/cacao-mani.webp" alt="Barritas de cacao y maní sobre un fondo violeta"
+                width="1200" height="800">
         </section>
 
-        <section class="cuenta">
-
-            <h2>Mi cuenta</h2>
-
-            <p>
-                ¿Ya tenés una cuenta?
-                <a href="./pages/login.html">Iniciar sesión</a>
-            </p>
-
-            <p>
-                ¿Sos nuevo?
-                <a href="./pages/registro.html">Registrarse</a>
-            </p>
-
+        <section class="seccion">
+            <div class="cabecera-seccion">
+                <h2>Barrita destacada</h2>
+                <a href="./pages/snacks.html">Explorá otros snacks <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="grilla-productos">
+                <article class="producto">
+                    <img src="./img/cacao-mani.webp" alt="Barritas de cacao con trozos de maní"
+                        width="1200" height="800" loading="lazy">
+                    <div class="producto-cuerpo">
+                        <p class="producto-dato">15 g de proteína · Porción individual</p>
+                        <h3>Cacao y maní</h3>
+                        <p>Barrita vegana de soja, cacao y maní.</p>
+                        <div class="producto-pie">
+                            <strong class="precio">$2.500</strong>
+                            <a href="./pages/barritas.html#cacao-mani">Ver producto <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
-
     </main>
 
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>Prime Snacks</strong> · Córdoba, Argentina</p>
+            <a href="./pages/registro.html">Crear una cuenta</a>
+        </div>
+    </footer>
 </body>
-
 </html>

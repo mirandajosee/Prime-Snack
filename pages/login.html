@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PrimeSnacks | Login</title>
-
+    <title>Iniciar sesión | Prime Snacks</title>
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
-
 <body>
+    <header class="encabezado">
+        <nav class="contenedor navbar" aria-label="Navegación principal">
+            <a class="marca" href="../index.html">
+                <img src="../img/marca.webp" alt="" width="38" height="38">
+                Prime Snacks
+            </a>
+            <ul class="nav-enlaces">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="./barritas.html">Barritas</a></li>
+                <li><a href="./snacks.html">Otros snacks</a></li>
+                <li><a href="./contacto.html">Contacto</a></li>
+            </ul>
+            <a class="nav-cuenta" href="./login.html" aria-current="page">Iniciar sesión</a>
+        </nav>
+    </header>
 
-    <main>
+    <main class="contenedor pagina pagina-cuenta">
+        <section class="panel cuenta">
+            <h1>Iniciar sesión</h1>
+            <p class="nota">Este formulario es de demostración. Usá datos de prueba.</p>
 
-        <h1>Iniciar sesión</h1>
+            <!-- Los campos no tienen name para que el navegador valide sin enviar sus valores. -->
+            <form action="./login.html#formulario-validado" method="get" autocomplete="off">
+                <div class="campo">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required>
+                </div>
+                <p class="formulario-validado" id="formulario-validado" tabindex="-1">
+                    Datos de prueba validados. El acceso a una cuenta todavía es una demostración.
+                </p>
+                <button type="submit" class="boton boton-violeta">Ingresar</button>
+            </form>
 
-        <form action="" method="post">
-
-            <label for="email">Email:</label>
-
-            <input
-                type="email"
-                id="email"
-                name="email"
-                required
-            >
-
-            <label for="password">Contraseña:</label>
-
-            <input
-                type="password"
-                id="password"
-                name="password"
-                required
-            >
-
-            <button type="submit">
-                Ingresar
-            </button>
-
-        </form>
-
-        <p>
-            ¿No tenés una cuenta?
-            <a href="./registro.html">Registrate</a>
-        </p>
-
-        <p>
-            <a href="../index.html">Volver al inicio</a>
-        </p>
-
+            <p class="cuenta-alternativa">¿Todavía no tenés cuenta? <a href="./registro.html">Creá una cuenta</a></p>
+        </section>
     </main>
 
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>Prime Snacks</strong> · Córdoba, Argentina</p>
+        </div>
+    </footer>
 </body>
-
 </html>

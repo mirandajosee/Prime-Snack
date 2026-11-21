@@ -1,112 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PrimeSnacks | Barritas</title>
-
+    <title>Barritas | Prime Snacks</title>
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
-
 <body>
-
-    <header>
-
-        <nav>
-
-            <a href="../index.html">
-                <img src="../img/logo.png"
-                     alt="Logo de PrimeSnacks"
-                     width="70">
+    <header class="encabezado">
+        <nav class="contenedor navbar" aria-label="Navegación principal">
+            <a class="marca" href="../index.html">
+                <img src="../img/marca.webp" alt="" width="38" height="38">
+                Prime Snacks
             </a>
-
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="./barritas.html">Barritas</a></li>
-                <li><a href="./snacks.html">Otros Snacks</a></li>
+            <ul class="nav-enlaces">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="./barritas.html" aria-current="page">Barritas</a></li>
+                <li><a href="./snacks.html">Otros snacks</a></li>
                 <li><a href="./contacto.html">Contacto</a></li>
-                <li><button type="button">Logout</button></li>
             </ul>
-
+            <a class="nav-cuenta" href="./login.html">Iniciar sesión</a>
         </nav>
-
     </header>
 
-    <main>
+    <main class="contenedor pagina">
+        <h1>Barritas proteicas</h1>
+        <p class="bajada">Elaboradas con ingredientes vegetales y pensadas para llevar a donde vayas.</p>
 
-        <h1>Barritas</h1>
-
-        <section>
-
-            <h2>Barritas proteicas veganas</h2>
-
-            <p>
-                Las barritas PrimeSnacks están elaboradas con ingredientes
-                de origen vegetal y pensadas como una alternativa práctica
-                para cualquier momento del día.
-            </p>
-
-            <article>
-
-                <h3>Barrita de cacao y maní</h3>
-
-                <p>
-                    Barrita elaborada a base de soja, cacao y maní.
-                    Contiene aproximadamente
-                    <strong>15 g de proteína por porción</strong>.
-                </p>
-
-                <h4>Características</h4>
-
-                <ul>
-                    <li>Producto vegano.</li>
-                    <li>Fuente de proteína vegetal.</li>
-                    <li>Formato individual.</li>
-                    <li>Ideal para gimnasio, trabajo o estudio.</li>
-                </ul>
-
-            </article>
-
-            <article>
-
-                <h3>Variedades disponibles</h3>
-
-                <table>
-
-                    <tr>
-                        <th>Variedad</th>
-                        <th>Proteína</th>
-                        <th>Precio</th>
-                    </tr>
-
-                    <tr>
-                        <td>Cacao y maní</td>
-                        <td>15 g</td>
-                        <td>$2.500</td>
-                    </tr>
-
-                    <tr>
-                        <td>Avena y soja</td>
-                        <td>14 g</td>
-                        <td>$2.300</td>
-                    </tr>
-
-                    <tr>
-                        <td>Chocolate y coco</td>
-                        <td>16 g</td>
-                        <td>$2.600</td>
-                    </tr>
-
-                </table>
-
-            </article>
-
+        <section class="seccion">
+            <h2>Nuestras barritas</h2>
+            <div class="grilla-productos">
+                <article class="producto" id="cacao-mani">
+                    <img src="../img/cacao-mani.webp" alt="Barritas de cacao con trozos de maní"
+                        width="1200" height="800">
+                    <div class="producto-cuerpo">
+                        <p class="producto-dato">15 g de proteína · Porción individual</p>
+                        <h3>Cacao y maní</h3>
+                        <p>Barrita vegana de soja, cacao y maní.</p>
+                        <div class="producto-pie">
+                            <strong class="precio">$2.500</strong>
+                            <a href="./contacto.html">Consultar <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
 
+        <section class="seccion variedades">
+            <h2>Variedades y precios de referencia</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Variedad</th>
+                        <th scope="col">Proteína por porción</th>
+                        <th scope="col">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><th scope="row">Cacao y maní</th><td>15 g</td><td>$2.500</td></tr>
+                    <tr><th scope="row">Avena y soja</th><td>14 g</td><td>$2.300</td></tr>
+                    <tr><th scope="row">Chocolate y coco</th><td>16 g</td><td>$2.600</td></tr>
+                </tbody>
+            </table>
+        </section>
     </main>
 
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>Prime Snacks</strong> · Córdoba, Argentina</p>
+            <a href="./registro.html">Crear una cuenta</a>
+        </div>
+    </footer>
 </body>
-
 </html>

@@ -1,64 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PrimeSnacks | Barritas</title>
-
+    <title>Otros snacks | Prime Snacks</title>
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
-
 <body>
-
-    <header>
-
-        <nav>
-
-            <a href="../index.html">
-                <img src="../img/logo.png"
-                     alt="Logo de PrimeSnacks"
-                     width="70">
+    <header class="encabezado">
+        <nav class="contenedor navbar" aria-label="Navegación principal">
+            <a class="marca" href="../index.html">
+                <img src="../img/marca.webp" alt="" width="38" height="38">
+                Prime Snacks
             </a>
-
-            <ul>
-                <li><a href="../index.html">Home</a></li>
+            <ul class="nav-enlaces">
+                <li><a href="../index.html">Inicio</a></li>
                 <li><a href="./barritas.html">Barritas</a></li>
-                <li><a href="./snacks.html">Otros Snacks</a></li>
+                <li><a href="./snacks.html" aria-current="page">Otros snacks</a></li>
                 <li><a href="./contacto.html">Contacto</a></li>
-                <li><button type="button">Logout</button></li>
             </ul>
-
+            <a class="nav-cuenta" href="./login.html">Iniciar sesión</a>
         </nav>
-
     </header>
 
-    <main>
+    <main class="contenedor pagina">
+        <h1>Otros snacks</h1>
+        <p class="bajada">Bites de chocolate, galletitas proteicas y snacks crocantes de soja.</p>
 
-        <h1>Otros Snacks</h1>
-
-        <section>
-
-            <h2>Más opciones PrimeSnacks</h2>
-
-            <p>
-                Además de nuestras barritas y premezclas,
-                PrimeSnacks cuenta con otras alternativas saludables.
-            </p>
-
-            <ul>
-                <li>Bites proteicos de chocolate.</li>
-                <li>Galletitas proteicas.</li>
-                <li>Snacks crocantes de soja.</li>
-                <li>Otros productos de temporada.</li>
-            </ul>
-
+        <section class="seccion">
+            <h2>Catálogo</h2>
+            <div class="grilla-productos">
+                <div class="catalogo-vacio">
+                    <p>Esta categoría todavía no tiene productos publicados.</p>
+                    <a href="./barritas.html">Ver barritas <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
         </section>
-
     </main>
 
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>Prime Snacks</strong> · Córdoba, Argentina</p>
+            <a href="./registro.html">Crear una cuenta</a>
+        </div>
+    </footer>
 </body>
-
 </html>
-

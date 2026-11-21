@@ -1,82 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PrimeSnacks | Contacto</title>
-
+    <title>Contacto | Prime Snacks</title>
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
-
 <body>
-
-    <header>
-
-        <nav>
-
-            <a href="./index.html">
-                <img src="../img/Logo.png"
-                     alt="Logo de PrimeSnacks"
-                     width="70">
+    <header class="encabezado">
+        <nav class="contenedor navbar" aria-label="Navegación principal">
+            <a class="marca" href="../index.html">
+                <img src="../img/marca.webp" alt="" width="38" height="38">
+                Prime Snacks
             </a>
-
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-
-                <li>
-                    <a href="../pages/barritas.html">Barritas</a>
-                </li>
-
-                <li>
-                    <a href="../pages/snacks.html">Otros Snacks</a>
-                </li>
-
-                <li>
-                    <a href="../pages/contacto.html">Contacto</a>
-                </li>
-
-                <li>
-                    <button type="button">Logout</button>
-                </li>
+            <ul class="nav-enlaces">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="./barritas.html">Barritas</a></li>
+                <li><a href="./snacks.html">Otros snacks</a></li>
+                <li><a href="./contacto.html" aria-current="page">Contacto</a></li>
             </ul>
-
+            <a class="nav-cuenta" href="./login.html">Iniciar sesión</a>
         </nav>
-
     </header>
 
-    <main>
-
+    <main class="contenedor pagina">
         <h1>Contacto</h1>
+        <p class="bajada">Consultas sobre productos y pedidos de Prime Snacks.</p>
 
-        <p>
-            Si querés realizar una consulta sobre nuestros productos,
-            podés comunicarte con PrimeSnacks por los siguientes medios.
-        </p>
-
-        <p>
-            <strong>Email:</strong>
-            primesnack@ejemplo.com
-        </p>
-
-        <p>
-            <strong>Teléfono / WhatsApp:</strong>
-            +54 9 351 1234567
-        </p>
-
-        <p>
-            <strong>Instagram:</strong>
-            @primesnacks
-        </p>
-
-        <p>
-            <strong>Ubicación:</strong>
-            Córdoba Capital, Argentina
-        </p>
-
+        <section class="seccion panel contacto">
+            <h2>Datos de contacto</h2>
+            <p>Canales de ejemplo para esta maqueta.</p>
+            <dl class="contacto-datos">
+                <div>
+                    <dt>Correo electrónico</dt>
+                    <dd>primesnack@ejemplo.com</dd>
+                </div>
+                <div>
+                    <dt>Teléfono / WhatsApp</dt>
+                    <dd>+54 9 351 1234567</dd>
+                </div>
+                <div>
+                    <dt>Instagram</dt>
+                    <dd>@primesnacks</dd>
+                </div>
+                <div>
+                    <dt>Ubicación</dt>
+                    <dd>Córdoba Capital, Argentina</dd>
+                </div>
+            </dl>
+        </section>
     </main>
 
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>Prime Snacks</strong> · Córdoba, Argentina</p>
+            <a href="./registro.html">Crear una cuenta</a>
+        </div>
+    </footer>
 </body>
-
 </html>
