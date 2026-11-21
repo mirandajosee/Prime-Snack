@@ -128,7 +128,14 @@ a:hover {
 
 .nav-cuenta {
     border: 1px solid var(--borde);
+    background: var(--superficie);
+    font-family: inherit;
+    font-weight: bold;
     white-space: nowrap;
+}
+
+button.nav-cuenta {
+    cursor: pointer;
 }
 
 .nav-cuenta:hover,
@@ -299,6 +306,44 @@ a:hover {
 
 .precio {
     font-size: 1.25rem;
+}
+
+.cantidad {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.cantidad button {
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    border: 1px solid var(--borde);
+    border-radius: 0.5rem;
+    background: var(--violeta-claro);
+    color: var(--violeta);
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cantidad button:hover:not(:disabled) {
+    border-color: var(--violeta);
+}
+
+.cantidad button:disabled {
+    background: var(--fondo);
+    color: var(--texto-suave);
+    cursor: default;
+}
+
+.cantidad output {
+    min-width: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.producto-enlace {
+    align-self: flex-start;
 }
 
 /* Formularios y contacto */

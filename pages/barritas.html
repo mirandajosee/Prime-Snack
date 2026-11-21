@@ -6,22 +6,13 @@
     <title>Barritas | Prime Snacks</title>
     <link rel="icon" type="image/webp" href="../img/prime-snacks.webp">
     <link rel="stylesheet" href="../styles/styles.css">
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/productos.js" defer></script>
+    <script src="../js/tarjetas.js" defer></script>
 </head>
-<body>
+<body data-raiz="../">
     <header class="encabezado">
-        <nav class="contenedor navbar" aria-label="Navegación principal">
-            <a class="marca" href="../index.html">
-                <img src="../img/prime-snacks.webp" alt="" width="38" height="38">
-                Prime Snacks
-            </a>
-            <ul class="nav-enlaces">
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="./barritas.html" aria-current="page">Barritas</a></li>
-                <li><a href="./snacks.html">Otros snacks</a></li>
-                <li><a href="./contacto.html">Contacto</a></li>
-            </ul>
-            <a class="nav-cuenta" href="./login.html">Iniciar sesión</a>
-        </nav>
+        <nav id="navbar" class="contenedor navbar" data-pagina="barritas" aria-label="Navegación principal"></nav>
     </header>
 
     <main class="contenedor pagina">
@@ -31,47 +22,7 @@
         <section class="seccion">
             <h2>Nuestras barritas</h2>
             <p class="nota">Precios de referencia por unidad.</p>
-            <div class="grilla-productos">
-                <article class="producto" id="cacao-mani">
-                    <img src="../img/cacao-mani.webp" alt="Barritas de cacao con trozos de maní"
-                        width="1200" height="800">
-                    <div class="producto-cuerpo">
-                        <p class="producto-dato">15 g de proteína · Porción individual</p>
-                        <h3>Cacao y maní</h3>
-                        <p>Barrita vegana de soja, cacao y maní.</p>
-                        <div class="producto-pie">
-                            <strong class="precio">$2.500</strong>
-                            <a href="./contacto.html" aria-label="Consultar por Cacao y maní">Consultar <span aria-hidden="true">→</span></a>
-                        </div>
-                    </div>
-                </article>
-                <article class="producto" id="avena-soja">
-                    <img src="../img/avena-soja.webp" alt="Barritas doradas con copos de avena"
-                        width="560" height="560" loading="lazy">
-                    <div class="producto-cuerpo">
-                        <p class="producto-dato">14 g de proteína · Porción individual</p>
-                        <h3>Avena y soja</h3>
-                        <p>Barrita de soja texturizada con avena arrollada.</p>
-                        <div class="producto-pie">
-                            <strong class="precio">$2.300</strong>
-                            <a href="./contacto.html" aria-label="Consultar por Avena y soja">Consultar <span aria-hidden="true">→</span></a>
-                        </div>
-                    </div>
-                </article>
-                <article class="producto" id="chocolate-coco">
-                    <img src="../img/chocolate-coco.webp" alt="Barritas de chocolate con coco rallado"
-                        width="560" height="560" loading="lazy">
-                    <div class="producto-cuerpo">
-                        <p class="producto-dato">16 g de proteína · Porción individual</p>
-                        <h3>Chocolate y coco</h3>
-                        <p>Barrita de proteína vegetal, chocolate y coco rallado.</p>
-                        <div class="producto-pie">
-                            <strong class="precio">$2.600</strong>
-                            <a href="./contacto.html" aria-label="Consultar por Chocolate y coco">Consultar <span aria-hidden="true">→</span></a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+            <div class="grilla-productos" data-catalogo="barritas"></div>
         </section>
     </main>
 

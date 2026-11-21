@@ -6,22 +6,12 @@
     <title>Iniciar sesión | Prime Snacks</title>
     <link rel="icon" type="image/webp" href="../img/prime-snacks.webp">
     <link rel="stylesheet" href="../styles/styles.css">
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/login.js" defer></script>
 </head>
-<body>
+<body data-raiz="../">
     <header class="encabezado">
-        <nav class="contenedor navbar" aria-label="Navegación principal">
-            <a class="marca" href="../index.html">
-                <img src="../img/prime-snacks.webp" alt="" width="38" height="38">
-                Prime Snacks
-            </a>
-            <ul class="nav-enlaces">
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="./barritas.html">Barritas</a></li>
-                <li><a href="./snacks.html">Otros snacks</a></li>
-                <li><a href="./contacto.html">Contacto</a></li>
-            </ul>
-            <a class="nav-cuenta" href="./login.html" aria-current="page">Iniciar sesión</a>
-        </nav>
+        <nav id="navbar" class="contenedor navbar" data-pagina="login" aria-label="Navegación principal"></nav>
     </header>
 
     <main class="contenedor pagina pagina-cuenta">
@@ -30,7 +20,7 @@
             <p class="nota">Este formulario es de demostración. Usá datos de prueba.</p>
 
             <!-- Los campos no tienen name para que el navegador valide sin enviar sus valores. -->
-            <form action="./login.html#formulario-validado" method="get" autocomplete="off">
+            <form id="formulario-login" action="../index.html" method="get" autocomplete="off">
                 <div class="campo">
                     <label for="email">Correo electrónico</label>
                     <input type="email" id="email" required>
@@ -39,9 +29,6 @@
                     <label for="password">Contraseña</label>
                     <input type="password" id="password" required>
                 </div>
-                <p class="formulario-validado" id="formulario-validado" tabindex="-1">
-                    Datos de prueba validados. El acceso a una cuenta todavía es una demostración.
-                </p>
                 <button type="submit" class="boton boton-violeta">Ingresar</button>
             </form>
 
