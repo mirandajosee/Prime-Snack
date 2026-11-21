@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito | Prime Snacks</title>
+    <link rel="icon" type="image/webp" href="../img/prime-snacks.webp">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="../js/sesion.js" defer></script>
+    <script src="../js/navbar.js" defer></script>
+    <script src="../js/catalogo.js" defer></script>
+    <script src="../js/carrito.js" defer></script>
+    <script src="../js/vista-carrito.js" defer></script>
+</head>
+<body data-raiz="../" data-requiere-sesion>
+    <header class="encabezado">
+        <nav id="navbar" class="contenedor navbar" data-pagina="carrito" aria-label="Navegación principal"></nav>
+    </header>
+
+    <main class="contenedor pagina" hidden>
+        <h1>Carrito de compras</h1>
+        <p id="estado-carrito" class="nota" role="status">Cargando carrito…</p>
+        <ul id="items-carrito" class="items-carrito"></ul>
+
+        <div class="carrito-pie">
+            <p id="total-carrito" hidden>Total estimado <strong class="precio"></strong></p>
+            <a href="../index.html" id="volver-tienda">Seguir comprando</a>
+        </div>
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>Prime Snacks</strong> · Córdoba, Argentina</p>
+        </div>
+    </footer>
+</body>
+</html>

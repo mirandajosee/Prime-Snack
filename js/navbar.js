@@ -36,7 +36,7 @@ function crearNavbar(contenedor, raiz) {
         lista.appendChild(elemento);
     }
 
-    if (paginaActual === "login" || paginaActual === "registro") {
+    if (!usuarioActual) {
         const enlace = document.createElement("a");
         enlace.className = "nav-cuenta";
         enlace.href = rutaLogin;
@@ -46,15 +46,40 @@ function crearNavbar(contenedor, raiz) {
         }
         contenedor.appendChild(enlace);
     } else {
+        const acciones = document.createElement("div");
+        acciones.className = "nav-acciones";
+
+        const carrito = document.createElement("a");
+        carrito.className = "nav-carrito";
+        carrito.href = raiz + "pages/carrito.html";
+        carrito.title = "Carrito";
+        carrito.setAttribute("aria-label", "Carrito");
+        carrito.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 3h3l3 12h11l3-9H6"></path>
+                <circle cx="9" cy="20" r="1"></circle>
+                <circle cx="18" cy="20" r="1"></circle>
+            </svg>
+        `;
+        if (paginaActual === "carrito") {
+            carrito.setAttribute("aria-current", "page");
+        }
+
         const boton = document.createElement("button");
         boton.type = "button";
         boton.className = "nav-cuenta";
         boton.textContent = "Cerrar sesión";
         boton.addEventListener("click", function () {
-            window.location.href = rutaLogin;
+            sessionStorage.removeItem(claveSesion);
+            window.location.replace(rutaLogin);
         });
-        contenedor.appendChild(boton);
+        acciones.appendChild(carrito);
+        acciones.appendChild(boton);
+        contenedor.appendChild(acciones);
     }
 }
 
-crearNavbar(document.querySelector("#navbar"), document.body.dataset.raiz);
+if (!requiereSesion || usuarioActual) {
+    crearNavbar(document.querySelector("#navbar"), raizTienda);
+}

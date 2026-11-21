@@ -2,21 +2,26 @@ function crearTarjeta(producto, raiz, esPortada) {
     const tarjeta = document.createElement("article");
     tarjeta.className = "producto";
     tarjeta.id = producto.id;
+    const nivelTitulo = esPortada ? "h4" : "h3";
     tarjeta.innerHTML = `
         <img loading="lazy">
         <div class="producto-cuerpo">
             <p class="producto-dato"></p>
-            <h3></h3>
+            <${nivelTitulo} class="producto-titulo"></${nivelTitulo}>
             <p class="producto-descripcion"></p>
             <div class="producto-pie">
                 <strong class="precio"></strong>
                 <div class="cantidad" role="group">
                     <button class="cantidad-menos" type="button" disabled>−</button>
-                    <output>1</output>
+                    <output>0</output>
                     <button class="cantidad-mas" type="button">+</button>
                 </div>
             </div>
-            <a class="producto-enlace"></a>
+            <div class="producto-acciones">
+                <button class="boton boton-violeta agregar-carrito" type="button" disabled>Añadir al carrito</button>
+                <a class="producto-enlace"></a>
+            </div>
+            <p class="estado-producto" role="status"></p>
         </div>
     `;
 
@@ -24,9 +29,9 @@ function crearTarjeta(producto, raiz, esPortada) {
     imagen.src = raiz + "img/" + producto.imagen;
     imagen.alt = producto.textoAlternativo;
     tarjeta.querySelector(".producto-dato").textContent = producto.etiqueta;
-    tarjeta.querySelector("h3").textContent = producto.titulo;
+    tarjeta.querySelector(".producto-titulo").textContent = producto.titulo;
     tarjeta.querySelector(".producto-descripcion").textContent = producto.descripcion;
-    tarjeta.querySelector(".precio").textContent = producto.precio;
+    tarjeta.querySelector(".precio").textContent = formatoPrecio.format(producto.precio);
 
     const enlace = tarjeta.querySelector(".producto-enlace");
     if (esPortada) {
@@ -43,38 +48,78 @@ function crearTarjeta(producto, raiz, esPortada) {
     const menos = selector.querySelector(".cantidad-menos");
     const mas = selector.querySelector(".cantidad-mas");
     const valor = selector.querySelector("output");
-    let cantidad = 1;
+    const agregar = tarjeta.querySelector(".agregar-carrito");
+    const estado = tarjeta.querySelector(".estado-producto");
+    let cantidad = 0;
 
     selector.setAttribute("aria-label", "Cantidad de " + producto.titulo);
     menos.setAttribute("aria-label", "Disminuir cantidad de " + producto.titulo);
     mas.setAttribute("aria-label", "Aumentar cantidad de " + producto.titulo);
+    agregar.setAttribute("aria-label", "Añadir al carrito: " + producto.titulo);
 
     function actualizarCantidad(cambio) {
-        cantidad = Math.max(1, cantidad + cambio);
+        cantidad = Math.max(0, cantidad + cambio);
         valor.textContent = cantidad;
-        menos.disabled = cantidad === 1;
+        menos.disabled = cantidad === 0;
+        agregar.disabled = cantidad === 0;
+        estado.textContent = "";
     }
 
     menos.addEventListener("click", function () {
         actualizarCantidad(-1);
+        if (menos.disabled) {
+            mas.focus();
+        }
     });
     mas.addEventListener("click", function () {
         actualizarCantidad(1);
+    });
+    agregar.addEventListener("click", function () {
+        try {
+            agregarAlCarrito(producto.id, cantidad);
+            const mensaje = cantidad === 1 ? "1 unidad añadida al carrito." : cantidad + " unidades añadidas al carrito.";
+            actualizarCantidad(-cantidad);
+            estado.textContent = mensaje;
+            mas.focus();
+        } catch (error) {
+            estado.textContent = "No se pudo guardar el producto en el carrito.";
+        }
     });
 
     return tarjeta;
 }
 
-function mostrarProductos(grilla, raiz) {
-    const catalogo = grilla.dataset.catalogo;
-    const esPortada = catalogo === "destacados";
+async function mostrarProductos() {
+    const grillas = document.querySelectorAll(".grilla-productos");
+    const estado = document.querySelector("#estado-catalogo");
 
-    for (const producto of productos) {
-        const mostrar = esPortada ? producto.destacado : producto.categoria === catalogo;
-        if (mostrar) {
-            grilla.appendChild(crearTarjeta(producto, raiz, esPortada));
+    try {
+        const productos = await obtenerCatalogo();
+        const esPortada = document.querySelector("#navbar").dataset.pagina === "inicio";
+
+        for (const grilla of grillas) {
+            const categoria = grilla.dataset.catalogo;
+            const seleccion = productos.filter(function (producto) {
+                return producto.categoria === categoria;
+            });
+            for (const producto of seleccion) {
+                grilla.appendChild(crearTarjeta(producto, raizTienda, esPortada));
+            }
         }
+        estado.textContent = "";
+
+        // Las tarjetas se agregan después de la carga inicial del documento.
+        const destino = document.getElementById(window.location.hash.slice(1));
+        if (destino) {
+            destino.scrollIntoView();
+        }
+    } catch (error) {
+        estado.textContent = window.location.protocol === "file:"
+            ? "Abrí la tienda con un servidor local para cargar el catálogo."
+            : "No se pudo cargar el catálogo. Volvé a intentar recargando la página.";
     }
 }
 
-mostrarProductos(document.querySelector(".grilla-productos"), document.body.dataset.raiz);
+if (usuarioActual) {
+    mostrarProductos();
+}

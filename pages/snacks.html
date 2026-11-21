@@ -6,22 +6,25 @@
     <title>Otros snacks | Prime Snacks</title>
     <link rel="icon" type="image/webp" href="../img/prime-snacks.webp">
     <link rel="stylesheet" href="../styles/styles.css">
+    <script src="../js/sesion.js" defer></script>
     <script src="../js/navbar.js" defer></script>
-    <script src="../js/productos.js" defer></script>
+    <script src="../js/catalogo.js" defer></script>
+    <script src="../js/carrito.js" defer></script>
     <script src="../js/tarjetas.js" defer></script>
 </head>
-<body data-raiz="../">
+<body data-raiz="../" data-requiere-sesion>
     <header class="encabezado">
         <nav id="navbar" class="contenedor navbar" data-pagina="snacks" aria-label="Navegación principal"></nav>
     </header>
 
-    <main class="contenedor pagina">
+    <main class="contenedor pagina" hidden>
         <h1>Otros snacks</h1>
         <p class="bajada">Opciones dulces y saladas de origen vegetal.</p>
 
         <section class="seccion">
             <h2>Catálogo</h2>
             <p class="nota">Precios de referencia por unidad.</p>
+            <p id="estado-catalogo" class="nota" role="status">Cargando productos…</p>
             <div class="grilla-productos" data-catalogo="snacks"></div>
         </section>
     </main>

@@ -1,0 +1,52 @@
+[
+    {
+        "id": "cacao-mani",
+        "categoria": "barritas",
+        "titulo": "Cacao y maní",
+        "descripcion": "Barrita vegana de soja, cacao y maní.",
+        "etiqueta": "15 g de proteína · Porción individual",
+        "imagen": "cacao-mani.webp",
+        "textoAlternativo": "Barritas de cacao con trozos de maní",
+        "precio": 2500
+    },
+    {
+        "id": "avena-soja",
+        "categoria": "barritas",
+        "titulo": "Avena y soja",
+        "descripcion": "Barrita de soja texturizada con avena arrollada.",
+        "etiqueta": "14 g de proteína · Porción individual",
+        "imagen": "avena-soja.webp",
+        "textoAlternativo": "Barritas doradas con copos de avena",
+        "precio": 2300
+    },
+    {
+        "id": "chocolate-coco",
+        "categoria": "barritas",
+        "titulo": "Chocolate y coco",
+        "descripcion": "Barrita de proteína vegetal, chocolate y coco rallado.",
+        "etiqueta": "16 g de proteína · Porción individual",
+        "imagen": "chocolate-coco.webp",
+        "textoAlternativo": "Barritas de chocolate con coco rallado",
+        "precio": 2600
+    },
+    {
+        "id": "bites-chocolate",
+        "categoria": "snacks",
+        "titulo": "Bites de chocolate",
+        "descripcion": "Bocaditos de cacao con proteína vegetal.",
+        "etiqueta": "Snack dulce",
+        "imagen": "bites-chocolate.webp",
+        "textoAlternativo": "Bocaditos redondos de chocolate",
+        "precio": 2800
+    },
+    {
+        "id": "soja-pizza",
+        "categoria": "snacks",
+        "titulo": "Soja crocante sabor pizza",
+        "descripcion": "Trocitos de soja tostada con condimentos estilo pizza.",
+        "etiqueta": "Snack salado",
+        "imagen": "soja-pizza.webp",
+        "textoAlternativo": "Trocitos de soja tostada con especias",
+        "precio": 2400
+    }
+]
