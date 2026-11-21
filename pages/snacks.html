@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otros snacks | Prime Snacks</title>
+    <link rel="icon" type="image/webp" href="../img/prime-snacks.webp">
     <link rel="stylesheet" href="../styles/styles.css">
 </head>
 <body>
     <header class="encabezado">
         <nav class="contenedor navbar" aria-label="Navegación principal">
             <a class="marca" href="../index.html">
-                <img src="../img/marca.webp" alt="" width="38" height="38">
+                <img src="../img/prime-snacks.webp" alt="" width="38" height="38">
                 Prime Snacks
             </a>
             <ul class="nav-enlaces">
@@ -25,15 +26,35 @@
 
     <main class="contenedor pagina">
         <h1>Otros snacks</h1>
-        <p class="bajada">Bites de chocolate, galletitas proteicas y snacks crocantes de soja.</p>
+        <p class="bajada">Opciones dulces y saladas de origen vegetal.</p>
 
         <section class="seccion">
             <h2>Catálogo</h2>
             <div class="grilla-productos">
-                <div class="catalogo-vacio">
-                    <p>Esta categoría todavía no tiene productos publicados.</p>
-                    <a href="./barritas.html">Ver barritas <span aria-hidden="true">→</span></a>
-                </div>
+                <article class="producto" id="bites-chocolate">
+                    <img src="../img/bites-chocolate.webp" alt="Bocaditos redondos de chocolate"
+                        width="560" height="560" loading="lazy">
+                    <div class="producto-cuerpo">
+                        <p class="producto-dato">Snack dulce</p>
+                        <h3>Bites de chocolate</h3>
+                        <p>Bocaditos de cacao con proteína vegetal.</p>
+                        <div class="producto-pie">
+                            <a href="./contacto.html" aria-label="Consultar por Bites de chocolate">Consultar <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                </article>
+                <article class="producto" id="soja-pizza">
+                    <img src="../img/soja-pizza.webp" alt="Trocitos de soja tostada con especias"
+                        width="560" height="560" loading="lazy">
+                    <div class="producto-cuerpo">
+                        <p class="producto-dato">Snack salado</p>
+                        <h3>Soja crocante sabor pizza</h3>
+                        <p>Trocitos de soja tostada con condimentos estilo pizza.</p>
+                        <div class="producto-pie">
+                            <a href="./contacto.html" aria-label="Consultar por Soja crocante sabor pizza">Consultar <span aria-hidden="true">→</span></a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
     </main>

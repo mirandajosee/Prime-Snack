@@ -257,15 +257,21 @@ a:hover {
 }
 
 .producto {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 }
 
 .producto img {
-    height: 220px;
+    height: auto;
+    max-height: 320px;
+    aspect-ratio: 4 / 3;
 }
 
 .producto-cuerpo {
-    display: grid;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     gap: 0.55rem;
     padding: 1.25rem;
 }
@@ -288,45 +294,11 @@ a:hover {
     gap: 0.35rem 1rem;
     border-top: 1px solid var(--borde);
     padding-top: 0.8rem;
-    margin-top: 0.45rem;
+    margin-top: auto;
 }
 
 .precio {
     font-size: 1.25rem;
-}
-
-.catalogo-vacio {
-    grid-column: 1 / -1;
-    padding: 1.5rem;
-    border: 1px dashed #b5adc3;
-    border-radius: 1rem;
-    background: var(--superficie);
-}
-
-.catalogo-vacio p {
-    margin-bottom: 0.5rem;
-}
-
-.variedades {
-    max-width: 46rem;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    background: var(--superficie);
-}
-
-th,
-td {
-    padding: 0.65rem 0.75rem;
-    border-bottom: 1px solid var(--borde);
-    text-align: left;
-}
-
-thead {
-    background: var(--violeta-claro);
 }
 
 /* Formularios y contacto */
@@ -498,12 +470,6 @@ input {
 
     .panel {
         padding: 1.35rem;
-    }
-
-    th,
-    td {
-        padding: 0.55rem;
-        font-size: 0.9rem;
     }
 }
 
