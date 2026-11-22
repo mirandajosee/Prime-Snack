@@ -1,0 +1,10 @@
+{
+    "framework": null,
+    "buildCommand": "node preparar-publicacion.mjs",
+    "outputDirectory": "public",
+    "functions": {
+        "api/checkout.mjs": {
+            "includeFiles": "datos/productos.json"
+        }
+    }
+}

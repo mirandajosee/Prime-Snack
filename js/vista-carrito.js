@@ -2,7 +2,10 @@ const estadoCarrito = document.querySelector("#estado-carrito");
 const listaCarrito = document.querySelector("#items-carrito");
 const totalCarrito = document.querySelector("#total-carrito");
 const botonConfirmarPedido = document.querySelector("#confirmar-pedido");
+const botonPagarPedido = document.querySelector("#pagar-pedido");
+const estadoPago = document.querySelector("#estado-pago");
 const resumenPedido = document.querySelector("#resumen-pedido");
+let preparandoPago = false;
 
 function crearItemCarrito(item, producto, productos) {
     const fila = document.createElement("li");
@@ -91,6 +94,7 @@ function mostrarCarrito(productos) {
     listaCarrito.textContent = "";
     totalCarrito.hidden = items.length === 0;
     botonConfirmarPedido.hidden = items.length === 0;
+    botonPagarPedido.hidden = items.length === 0;
     estadoCarrito.textContent = items.length === 0 ? "Tu carrito está vacío." : "";
 
     let total = 0;
@@ -108,6 +112,7 @@ function mostrarCarrito(productos) {
         }
     }
     botonConfirmarPedido.disabled = !cantidadesValidas;
+    botonPagarPedido.disabled = !cantidadesValidas || preparandoPago;
     if (!cantidadesValidas) {
         estadoCarrito.textContent = "Ajustá las cantidades o quitá los productos sin disponibilidad antes de confirmar.";
     }
@@ -136,11 +141,33 @@ async function iniciarCarrito() {
     try {
         const productos = await obtenerCatalogo();
         mostrarCarrito(productos);
+        botonPagarPedido.addEventListener("click", async function () {
+            preparandoPago = true;
+            botonPagarPedido.disabled = true;
+            estadoPago.textContent = "Preparando el checkout de prueba…";
+
+            try {
+                const items = leerCarrito();
+                const checkoutUrl = await crearCheckout(items);
+                if (JSON.stringify(items) !== JSON.stringify(leerCarrito())) {
+                    estadoPago.textContent = "El carrito cambió. Revisalo antes de volver a iniciar el pago.";
+                    return;
+                }
+                estadoPago.textContent = "Abriendo el checkout de prueba…";
+                window.location.assign(checkoutUrl);
+            } catch (error) {
+                estadoPago.textContent = error.message || "No se pudo iniciar el pago de prueba.";
+            } finally {
+                preparandoPago = false;
+                mostrarCarrito(productos);
+            }
+        });
         botonConfirmarPedido.addEventListener("click", function () {
             try {
                 const pedido = confirmarPedido(productos);
                 mostrarCarrito(productos);
                 if (pedido) {
+                    estadoPago.textContent = "";
                     resumenPedido.querySelector("#titulo-pedido").focus();
                 }
             } catch (error) {

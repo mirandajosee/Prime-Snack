@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/styles.css">
     <script src="../js/sesion.js" defer></script>
     <script src="../js/navbar.js" defer></script>
+    <script src="../js/ubicacion.js" defer></script>
 </head>
 <body data-raiz="../" data-requiere-sesion>
     <header class="encabezado">
@@ -36,9 +37,22 @@
                 </div>
                 <div>
                     <dt>Ubicación</dt>
-                    <dd>Córdoba Capital, Argentina</dd>
+                    <dd>Rondeau 165, Nueva Córdoba</dd>
                 </div>
             </dl>
+        </section>
+
+        <section class="seccion panel contacto" aria-labelledby="titulo-ubicacion">
+            <h2 id="titulo-ubicacion">Ubicación de retiro</h2>
+            <p>Punto de retiro de demostración en la sede del Colegio Universitario IES.</p>
+            <iframe class="mapa-contacto" title="Mapa del punto de retiro en Rondeau 165, Córdoba" loading="lazy"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-64.1883%2C-31.4252%2C-64.1803%2C-31.4202&amp;layer=mapnik&amp;marker=-31.4227003%2C-64.1842942"></iframe>
+            <div class="ubicacion-acciones">
+                <button class="boton boton-violeta" type="button" id="calcular-distancia">Calcular distancia</button>
+                <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-31.4227003%2C-64.1842942"
+                    target="_blank" rel="noopener">Cómo llegar</a>
+            </div>
+            <p id="estado-distancia" class="nota" role="status"></p>
         </section>
     </main>
 

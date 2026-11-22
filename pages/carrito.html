@@ -10,6 +10,7 @@
     <script src="../js/navbar.js" defer></script>
     <script src="../js/catalogo.js" defer></script>
     <script src="../js/carrito.js" defer></script>
+    <script src="../js/pago.js" defer></script>
     <script src="../js/vista-carrito.js" defer></script>
 </head>
 <body data-raiz="../" data-requiere-sesion>
@@ -27,8 +28,10 @@
             <div class="carrito-acciones">
                 <a href="../index.html" id="volver-tienda">Seguir comprando</a>
                 <button id="confirmar-pedido" type="button" class="boton boton-violeta" hidden>Confirmar pedido</button>
+                <button id="pagar-pedido" type="button" class="boton boton-secundario" hidden>Mercado Pago (prueba)</button>
             </div>
         </div>
+        <p id="estado-pago" class="nota" role="status"></p>
 
         <section id="resumen-pedido" class="panel resumen-pedido" aria-labelledby="titulo-pedido" hidden>
             <h2 id="titulo-pedido" tabindex="-1">Último pedido de demostración</h2>
