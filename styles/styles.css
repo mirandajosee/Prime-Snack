@@ -13,6 +13,10 @@
     box-sizing: border-box;
 }
 
+.boton[hidden] {
+    display: none;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -375,11 +379,16 @@ button.nav-cuenta {
     padding: 0.55rem 0.75rem;
 }
 
-.producto-acciones .boton:disabled {
+.boton-violeta:disabled {
     background: var(--fondo);
     color: var(--texto-suave);
     box-shadow: inset 0 0 0 1px var(--borde);
     cursor: default;
+}
+
+.producto-stock {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
 }
 
 .estado-producto,
@@ -457,6 +466,25 @@ button.nav-cuenta {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 0.75rem 1rem;
+}
+
+.carrito-acciones {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+}
+
+.resumen-pedido {
+    margin-top: 1.5rem;
+}
+
+.resumen-pedido h2 + p {
+    margin-top: 0.55rem;
+}
+
+.resumen-pedido ul {
+    padding-left: 1.25rem;
 }
 
 /* Formularios y contacto */

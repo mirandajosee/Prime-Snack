@@ -1,6 +1,8 @@
 const estadoCarrito = document.querySelector("#estado-carrito");
 const listaCarrito = document.querySelector("#items-carrito");
 const totalCarrito = document.querySelector("#total-carrito");
+const botonConfirmarPedido = document.querySelector("#confirmar-pedido");
+const resumenPedido = document.querySelector("#resumen-pedido");
 
 function crearItemCarrito(item, producto, productos) {
     const fila = document.createElement("li");
@@ -33,7 +35,7 @@ function crearItemCarrito(item, producto, productos) {
     }
     fila.querySelector("h2").textContent = titulo;
     fila.querySelector(".item-carrito-precio").textContent = producto
-        ? formatoPrecio.format(producto.precio) + " por unidad"
+        ? formatoPrecio.format(producto.precio) + " por unidad · Máximo " + producto.stock + " por pedido"
         : "Sin precio disponible";
     fila.querySelector(".cantidad").setAttribute("aria-label", "Cantidad de " + titulo);
     fila.querySelector("output").textContent = item.cantidad === 1 ? "1 unidad" : item.cantidad + " unidades";
@@ -44,11 +46,17 @@ function crearItemCarrito(item, producto, productos) {
     function actualizarItem(operacion, selector) {
         const indice = Array.from(listaCarrito.children).indexOf(fila);
         try {
-            operacion(item.id);
+            const resultado = operacion(item.id);
             mostrarCarrito(productos);
             const siguienteFila = listaCarrito.children[indice] || listaCarrito.lastElementChild;
-            const siguiente = siguienteFila ? siguienteFila.querySelector(selector) : document.querySelector("#volver-tienda");
+            let siguiente = siguienteFila ? siguienteFila.querySelector(selector) : document.querySelector("#volver-tienda");
+            if (siguiente.disabled) {
+                siguiente = siguienteFila.querySelector(".cantidad-menos");
+            }
             siguiente.focus();
+            if (resultado === null) {
+                estadoCarrito.textContent = "El producto ya alcanzó el máximo por pedido.";
+            }
         } catch (error) {
             estadoCarrito.textContent = "No se pudo actualizar el carrito.";
         }
@@ -62,10 +70,10 @@ function crearItemCarrito(item, producto, productos) {
 
     const mas = fila.querySelector(".cantidad-mas");
     mas.setAttribute("aria-label", "Añadir una unidad de " + titulo);
-    mas.disabled = !producto;
+    mas.disabled = !producto || item.cantidad >= producto.stock;
     mas.addEventListener("click", function () {
-        actualizarItem(function (id) {
-            agregarAlCarrito(id, 1);
+        actualizarItem(function () {
+            return agregarAlCarrito(producto, 1);
         }, ".cantidad-mas");
     });
 
@@ -78,12 +86,15 @@ function crearItemCarrito(item, producto, productos) {
 }
 
 function mostrarCarrito(productos) {
-    const items = leerCarrito();
+    const estado = leerEstadoCarrito();
+    const items = estado.items;
     listaCarrito.textContent = "";
     totalCarrito.hidden = items.length === 0;
+    botonConfirmarPedido.hidden = items.length === 0;
     estadoCarrito.textContent = items.length === 0 ? "Tu carrito está vacío." : "";
 
     let total = 0;
+    let cantidadesValidas = true;
     for (const item of items) {
         const producto = productos.find(function (entrada) {
             return entrada.id === item.id;
@@ -92,14 +103,50 @@ function mostrarCarrito(productos) {
         if (producto) {
             total += producto.precio * item.cantidad;
         }
+        if (!producto || item.cantidad > producto.stock) {
+            cantidadesValidas = false;
+        }
+    }
+    botonConfirmarPedido.disabled = !cantidadesValidas;
+    if (!cantidadesValidas) {
+        estadoCarrito.textContent = "Ajustá las cantidades o quitá los productos sin disponibilidad antes de confirmar.";
     }
     totalCarrito.querySelector(".precio").textContent = formatoPrecio.format(total);
+    mostrarResumenPedido(estado.ultimoPedido);
+}
+
+function mostrarResumenPedido(pedido) {
+    resumenPedido.hidden = !pedido;
+    if (!pedido) {
+        return;
+    }
+
+    resumenPedido.querySelector("#numero-pedido").textContent = pedido.numero;
+    resumenPedido.querySelector("#total-pedido").textContent = formatoPrecio.format(pedido.total);
+    const detalle = resumenPedido.querySelector("#detalle-pedido");
+    detalle.textContent = "";
+    for (const item of pedido.items) {
+        const fila = document.createElement("li");
+        fila.textContent = item.cantidad + " × " + item.titulo + " · " + formatoPrecio.format(item.subtotal);
+        detalle.appendChild(fila);
+    }
 }
 
 async function iniciarCarrito() {
     try {
         const productos = await obtenerCatalogo();
         mostrarCarrito(productos);
+        botonConfirmarPedido.addEventListener("click", function () {
+            try {
+                const pedido = confirmarPedido(productos);
+                mostrarCarrito(productos);
+                if (pedido) {
+                    resumenPedido.querySelector("#titulo-pedido").focus();
+                }
+            } catch (error) {
+                estadoCarrito.textContent = "No se pudo guardar el pedido. El carrito sigue disponible.";
+            }
+        });
     } catch (error) {
         estadoCarrito.textContent = window.location.protocol === "file:"
             ? "Abrí la tienda con un servidor local para cargar el carrito."

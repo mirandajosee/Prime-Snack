@@ -24,8 +24,18 @@
 
         <div class="carrito-pie">
             <p id="total-carrito" hidden>Total estimado <strong class="precio"></strong></p>
-            <a href="../index.html" id="volver-tienda">Seguir comprando</a>
+            <div class="carrito-acciones">
+                <a href="../index.html" id="volver-tienda">Seguir comprando</a>
+                <button id="confirmar-pedido" type="button" class="boton boton-violeta" hidden>Confirmar pedido</button>
+            </div>
         </div>
+
+        <section id="resumen-pedido" class="panel resumen-pedido" aria-labelledby="titulo-pedido" hidden>
+            <h2 id="titulo-pedido" tabindex="-1">Último pedido de demostración</h2>
+            <p>Número <strong id="numero-pedido"></strong></p>
+            <ul id="detalle-pedido"></ul>
+            <p>Total <strong id="total-pedido" class="precio"></strong></p>
+        </section>
     </main>
 
     <footer class="pie">

@@ -7,7 +7,8 @@
         "etiqueta": "15 g de proteína · Porción individual",
         "imagen": "cacao-mani.webp",
         "textoAlternativo": "Barritas de cacao con trozos de maní",
-        "precio": 2500
+        "precio": 2500,
+        "stock": 6
     },
     {
         "id": "avena-soja",
@@ -17,7 +18,8 @@
         "etiqueta": "14 g de proteína · Porción individual",
         "imagen": "avena-soja.webp",
         "textoAlternativo": "Barritas doradas con copos de avena",
-        "precio": 2300
+        "precio": 2300,
+        "stock": 5
     },
     {
         "id": "chocolate-coco",
@@ -27,7 +29,8 @@
         "etiqueta": "16 g de proteína · Porción individual",
         "imagen": "chocolate-coco.webp",
         "textoAlternativo": "Barritas de chocolate con coco rallado",
-        "precio": 2600
+        "precio": 2600,
+        "stock": 4
     },
     {
         "id": "bites-chocolate",
@@ -37,7 +40,8 @@
         "etiqueta": "Snack dulce",
         "imagen": "bites-chocolate.webp",
         "textoAlternativo": "Bocaditos redondos de chocolate",
-        "precio": 2800
+        "precio": 2800,
+        "stock": 5
     },
     {
         "id": "soja-pizza",
@@ -47,6 +51,7 @@
         "etiqueta": "Snack salado",
         "imagen": "soja-pizza.webp",
         "textoAlternativo": "Trocitos de soja tostada con especias",
-        "precio": 2400
+        "precio": 2400,
+        "stock": 4
     }
 ]

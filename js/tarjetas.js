@@ -1,4 +1,4 @@
-function crearTarjeta(producto, raiz, esPortada) {
+function crearTarjeta(producto, raiz, esPortada, enCarrito) {
     const tarjeta = document.createElement("article");
     tarjeta.className = "producto";
     tarjeta.id = producto.id;
@@ -17,6 +17,7 @@ function crearTarjeta(producto, raiz, esPortada) {
                     <button class="cantidad-mas" type="button">+</button>
                 </div>
             </div>
+            <p class="producto-stock"></p>
             <div class="producto-acciones">
                 <button class="boton boton-violeta agregar-carrito" type="button" disabled>Añadir al carrito</button>
                 <a class="producto-enlace"></a>
@@ -50,6 +51,7 @@ function crearTarjeta(producto, raiz, esPortada) {
     const valor = selector.querySelector("output");
     const agregar = tarjeta.querySelector(".agregar-carrito");
     const estado = tarjeta.querySelector(".estado-producto");
+    const stock = tarjeta.querySelector(".producto-stock");
     let cantidad = 0;
 
     selector.setAttribute("aria-label", "Cantidad de " + producto.titulo);
@@ -58,10 +60,15 @@ function crearTarjeta(producto, raiz, esPortada) {
     agregar.setAttribute("aria-label", "Añadir al carrito: " + producto.titulo);
 
     function actualizarCantidad(cambio) {
-        cantidad = Math.max(0, cantidad + cambio);
+        const disponibles = Math.max(0, producto.stock - enCarrito);
+        cantidad = Math.max(0, Math.min(disponibles, cantidad + cambio));
         valor.textContent = cantidad;
         menos.disabled = cantidad === 0;
+        mas.disabled = cantidad >= disponibles;
         agregar.disabled = cantidad === 0;
+        stock.textContent = disponibles === 0
+            ? "Máximo por pedido alcanzado."
+            : "Hasta " + producto.stock + " por pedido" + (enCarrito ? " · " + enCarrito + " en el carrito" : "");
         estado.textContent = "";
     }
 
@@ -73,19 +80,34 @@ function crearTarjeta(producto, raiz, esPortada) {
     });
     mas.addEventListener("click", function () {
         actualizarCantidad(1);
+        if (mas.disabled) {
+            agregar.focus();
+        }
     });
     agregar.addEventListener("click", function () {
         try {
-            agregarAlCarrito(producto.id, cantidad);
+            const nuevaCantidad = agregarAlCarrito(producto, cantidad);
+            if (nuevaCantidad === null) {
+                const item = leerCarrito().find(function (entrada) {
+                    return entrada.id === producto.id;
+                });
+                enCarrito = item ? item.cantidad : 0;
+                actualizarCantidad(0);
+                estado.textContent = "La cantidad supera el máximo disponible para este pedido.";
+                (mas.disabled ? enlace : mas).focus();
+                return;
+            }
             const mensaje = cantidad === 1 ? "1 unidad añadida al carrito." : cantidad + " unidades añadidas al carrito.";
+            enCarrito = nuevaCantidad;
             actualizarCantidad(-cantidad);
             estado.textContent = mensaje;
-            mas.focus();
+            (mas.disabled ? enlace : mas).focus();
         } catch (error) {
             estado.textContent = "No se pudo guardar el producto en el carrito.";
         }
     });
 
+    actualizarCantidad(0);
     return tarjeta;
 }
 
@@ -96,6 +118,7 @@ async function mostrarProductos() {
     try {
         const productos = await obtenerCatalogo();
         const esPortada = document.querySelector("#navbar").dataset.pagina === "inicio";
+        const items = leerCarrito();
 
         for (const grilla of grillas) {
             const categoria = grilla.dataset.catalogo;
@@ -103,7 +126,10 @@ async function mostrarProductos() {
                 return producto.categoria === categoria;
             });
             for (const producto of seleccion) {
-                grilla.appendChild(crearTarjeta(producto, raizTienda, esPortada));
+                const item = items.find(function (entrada) {
+                    return entrada.id === producto.id;
+                });
+                grilla.appendChild(crearTarjeta(producto, raizTienda, esPortada, item ? item.cantidad : 0));
             }
         }
         estado.textContent = "";

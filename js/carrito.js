@@ -2,57 +2,97 @@ function claveCarrito() {
     return "prime-snacks-carrito:" + usuarioActual.email;
 }
 
-function leerCarrito() {
+function leerEstadoCarrito() {
     const guardado = localStorage.getItem(claveCarrito());
+    let estado;
     try {
-        const items = JSON.parse(guardado);
-        if (Array.isArray(items)) {
-            return items.filter(function (item) {
-                return item && typeof item.id === "string" && Number.isSafeInteger(item.cantidad) && item.cantidad > 0;
-            });
-        }
+        estado = JSON.parse(guardado) || {};
     } catch (error) {
-        return [];
+        estado = {};
     }
-    return [];
+
+    // Los carritos de M4 se guardaban directamente como un arreglo.
+    const items = Array.isArray(estado) ? estado : estado.items;
+    return {
+        items: Array.isArray(items) ? items.filter(function (item) {
+            return item && typeof item.id === "string" && Number.isSafeInteger(item.cantidad) && item.cantidad > 0;
+        }) : [],
+        ultimoPedido: estado.ultimoPedido || null
+    };
 }
 
-function guardarCarrito(items) {
-    localStorage.setItem(claveCarrito(), JSON.stringify(items));
+function leerCarrito() {
+    return leerEstadoCarrito().items;
 }
 
-function agregarAlCarrito(id, cantidad) {
-    const items = leerCarrito();
-    const existente = items.find(function (item) {
-        return item.id === id;
+function guardarEstadoCarrito(estado) {
+    localStorage.setItem(claveCarrito(), JSON.stringify(estado));
+}
+
+function agregarAlCarrito(producto, cantidad) {
+    const estado = leerEstadoCarrito();
+    const existente = estado.items.find(function (item) {
+        return item.id === producto.id;
     });
+    const nuevaCantidad = (existente ? existente.cantidad : 0) + cantidad;
 
-    if (existente) {
-        existente.cantidad += cantidad;
-    } else {
-        items.push({ id: id, cantidad: cantidad });
+    if (nuevaCantidad > producto.stock) {
+        return null;
     }
-    guardarCarrito(items);
+    if (existente) {
+        existente.cantidad = nuevaCantidad;
+    } else {
+        estado.items.push({ id: producto.id, cantidad: cantidad });
+    }
+    guardarEstadoCarrito(estado);
+    return nuevaCantidad;
 }
 
 function eliminarDelCarrito(id) {
-    const restantes = leerCarrito().filter(function (item) {
+    const estado = leerEstadoCarrito();
+    estado.items = estado.items.filter(function (item) {
         return item.id !== id;
     });
-    guardarCarrito(restantes);
+    guardarEstadoCarrito(estado);
 }
 
 function disminuirDelCarrito(id) {
-    const items = leerCarrito();
-    const producto = items.find(function (item) {
+    const estado = leerEstadoCarrito();
+    const producto = estado.items.find(function (item) {
         return item.id === id;
     });
 
     if (producto) {
         producto.cantidad -= 1;
-        const restantes = items.filter(function (item) {
+        estado.items = estado.items.filter(function (item) {
             return item.cantidad > 0;
         });
-        guardarCarrito(restantes);
+        guardarEstadoCarrito(estado);
     }
+}
+
+function confirmarPedido(productos) {
+    const estado = leerEstadoCarrito();
+    if (estado.items.length === 0) {
+        return null;
+    }
+
+    const detalle = [];
+    let total = 0;
+    for (const item of estado.items) {
+        const producto = productos.find(function (entrada) {
+            return entrada.id === item.id;
+        });
+        if (!producto || item.cantidad > producto.stock) {
+            return null;
+        }
+
+        const subtotal = producto.precio * item.cantidad;
+        detalle.push({ titulo: producto.titulo, cantidad: item.cantidad, subtotal: subtotal });
+        total += subtotal;
+    }
+
+    const pedido = { numero: "PS-" + Date.now().toString(36).toUpperCase(), items: detalle, total: total };
+    guardarEstadoCarrito({ items: [], ultimoPedido: pedido });
+    return pedido;
 }
