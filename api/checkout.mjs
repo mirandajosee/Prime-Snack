@@ -73,7 +73,10 @@ export async function iniciarCheckout(solicitud, respuesta, origen) {
         return responderJSON(respuesta, 415, { error: "El carrito debe enviarse como JSON." });
     }
     if (!token) {
-        return responderJSON(respuesta, 503, { error: "Configurá el Access Token de prueba y reiniciá el servidor." });
+        const error = process.env.VERCEL
+            ? "El checkout de prueba requiere configurar su Access Token en Vercel y volver a desplegar."
+            : "Configurá el Access Token de prueba y reiniciá el servidor.";
+        return responderJSON(respuesta, 503, { error: error });
     }
 
     const datos = await leerSolicitud(solicitud);

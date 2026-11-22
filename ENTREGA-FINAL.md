@@ -5,8 +5,8 @@
 
 ## Proyecto publicado
 
-- Plataforma de publicación — [Por completar]
-- Enlace público al sitio — [Por completar]
+- Plataforma de publicación — Vercel
+- Enlace público — [Prime Snacks](https://prime-snack.vercel.app/)
 
 ## Roadmap de desarrollo
 

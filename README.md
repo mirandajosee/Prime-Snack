@@ -6,6 +6,8 @@ Proyecto desarrollado para la materia Aplicaciones Web 1 de la carrera Analista 
 
 Prime Snacks es un prototipo de tienda de barritas y snacks de proteína vegetal de Córdoba.
 
+[Abrir Prime Snacks en Vercel](https://prime-snack.vercel.app/)
+
 ## Prueba local
 
 Desde la raíz del repositorio, ejecutá `node servidor.mjs` con Node.js 24 y abrí [la tienda local](http://127.0.0.1:8765/). El ingreso y la confirmación de pedidos son de demostración.
