@@ -43,4 +43,4 @@ En la entrega parcial de integración, el recorrido de compra llegaba hasta el c
 
 ## Video explicativo
 
-- Enlace al video — [Por completar]
+- [Enlace al video](https://drive.google.com/file/d/1mAaxnBT3edSzhBTb7q7besQYOufWn4uK/view?usp=drive_link)
